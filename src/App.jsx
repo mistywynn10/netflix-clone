@@ -13,13 +13,12 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe =onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log("Logged In");
-        navigate('/');
-      }
-      else {
+      if (!user) {
         console.log("Logged Out");
         navigate('/login');
+      }
+      else {
+        console.log("Logged In");
       }
     });
     return () => unsubscribe();
