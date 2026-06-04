@@ -84,3 +84,27 @@
     background: #141414 !important;
     background-image: none !important;
 }
+
+@media (max-width: 800px) {
+    .navbar {
+        padding: 20px 4%;
+    }
+
+    .navbar-left ul {
+        display: none;
+    }
+
+    .navbar img {
+        height: 26px;
+    }
+}
+
+@media (max-width: 500px) {
+    .navbar img {
+        height: 20px;
+    }
+
+    .navbar-right {
+        gap: 12px;
+    }
+}
