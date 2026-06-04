@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Home from './pages/Home/Home';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Player from './pages/Player/Player';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -9,20 +9,20 @@ import { auth } from './firebase';
 
 const App = () => {
 
-  const navigate = useNavigate();
+const navigate = useNavigate();
+const location = useLocation();
 
-  useEffect(() => {
-    const unsubscribe =onAuthStateChanged(auth, (user) => {
-      if (!user) {
-        console.log("Logged Out");
-        navigate('/login');
-      }
-      else {
-        console.log("Logged In");
-      }
-    });
-    return () => unsubscribe();
-  }, [navigate])
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      navigate("/login");
+    } else if (location.pathname === "/login") {
+      navigate("/");
+    }
+  });
+
+  return () => unsubscribe();
+}, [navigate, location.pathname]);
 
   return (
     <div>
