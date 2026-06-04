@@ -16,7 +16,10 @@ const Player = () => {
         typeof: ""
     });
 
-  const options = {
+
+
+  useEffect(() => {
+      const options = {
     method: "GET",
     headers: {
       accept: "application/json",
@@ -24,8 +27,7 @@ const Player = () => {
         "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZWQwZWExN2ViZmRiYzY0OTNhOTYxYmYwMzMxNTM4MCIsIm5iZiI6MTc4MDMyOTUwOC4xMTIsInN1YiI6IjZhMWRhYzI0ZDc1Mjk4NjI3NDljNmMyOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.h39hnSC3ncQsz5uu7k1RE8GlmjLf66z7zvUG2R9wiJE",
     },
   };
-
-  useEffect(() => {
+  
     fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
       options,
